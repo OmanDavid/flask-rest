@@ -58,6 +58,12 @@ def create_book():
     books.append(new_book)
     return jsonify(new_book.to_dict()),201
 
+@library_bp.route('/search_books')
+def search_books():
+    query = request.args.get('q', '').lower()
+    results = [b.to_dict() for b in books if query in b.title.lower()]
+    return jsonify(results)
+
 
 class AuthorResource(Resource):
     def get(self):

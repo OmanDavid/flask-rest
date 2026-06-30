@@ -1,15 +1,17 @@
 from flask import Flask,current_app,g, request,make_response,jsonify
 import requests
 from library import library_bp
+from flask_cors import CORS
+
 
 
 app = Flask(__name__)
 app.register_blueprint(library_bp,url_prefix='/library')
-
+CORS(app)
 
 @app.route('/home')
 def home():
-    resp = make_response("<h1>Hello The</h1>",201,{'token':'FGHHG67GJHFZ'})
+    resp = make_response("<h1>Hello There Oman</h1>",201,{'token':'FGHHG67GJHFZ'})
     return resp
 
 @app.route('/about')
@@ -32,5 +34,5 @@ def quotes(quote_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True)
 
